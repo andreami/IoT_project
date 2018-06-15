@@ -1,0 +1,27 @@
+#ifndef ICONSPACK_H
+#define ICONSPACK_H
+#include "Icon.h"
+
+class IconsPack {
+public:
+	IconsPack();
+	virtual ~IconsPack();
+
+	void initCCIcon();
+
+	sf::RectangleShape drawConnectionIcon();
+
+	void eventListener(EventsManager *ev);
+
+protected:
+
+private:
+	Icon checkConncetionIcon;
+	void iconListener(Icon &i);
+
+    EventsManager *event;
+
+    sf::Clock clock;
+};
+
+#endif // ICONSPACK_H

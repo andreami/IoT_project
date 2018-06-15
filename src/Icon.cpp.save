@@ -1,0 +1,37 @@
+#include "Icon.h"
+
+Icon::Icon() {
+    state = false;
+}
+
+Icon::~Icon() {
+	//dtor
+}
+
+RectangleShape Icon::getRect()
+{
+    return rect
+}
+
+void Icon::setTexures(std::string textureName1, std::string textureName2) {
+	texture[0].loadFromFile(textureName1);
+	texture[1].loadFromFile(textureName2);
+	rect.setSize(sf::Vector2f(32, 32));
+	rect.setTexture(&texture[0]);
+}
+
+void Icon::setPosition(sf::Vector2f pos) {
+	rect.setPosition(pos);
+}
+
+void Icon::changeTexture() {
+	if(!state) {
+		rect.setTexture(&texture[1]);
+		state = true;
+	} else {
+		rect.setTexture(&texture[0]);
+		state = false;
+	}
+}
+
+

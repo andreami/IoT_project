@@ -1,0 +1,32 @@
+#include "IconsPack.h"
+
+IconsPack::IconsPack() {
+	initCCIcon();
+}
+
+IconsPack::~IconsPack() {
+	//dtor
+}
+
+void IconsPack::eventListener(EventsManager *ev) {
+	event = ev;
+}
+
+void IconsPack::initCCIcon() {
+	conncetionIcon.setTexures("img/success.png", "img/error.png");
+	conncetionIcon.setPosition(sf::Vector2f(10, 10));
+}
+
+void IconsPack::CCiconListener(Icon &i) {
+	if(event->) {
+		i.changeTexture(true);
+	} else{
+        i.changeTexture(false);
+    }
+}
+
+sf::RectangleShape IconsPack::drawConnectionIcon()
+{
+    iconListener(conncetionIcon);
+    return conncetionIcon.getRect();
+}

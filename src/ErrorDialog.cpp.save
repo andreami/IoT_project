@@ -1,0 +1,18 @@
+#include "ErrorDialog.h"
+
+ErrorDialog::ErrorDialog()
+{
+    //ctor
+}
+
+ErrorDialog::~ErrorDialog()
+{
+    //dtor
+}
+
+sf::RectangleShape ErrorDialog::showConnectionErrorDialog()
+{
+    window.setSize(sf::Vector2f(150,400));
+    window.setFillColor(sf::Color::Red);
+    return window;
+}

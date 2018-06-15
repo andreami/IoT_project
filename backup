@@ -1,0 +1,19 @@
+sf::Font openSans;
+	if (!openSans.loadFromFile("fonts/open_sans_regular.ttf")) {
+		return EXIT_FAILURE;
+	}
+
+	sf::Text text;
+
+// select the font
+	text.setFont(openSans); // font is a sf::Font
+
+// set the string to display
+	text.setString("Hello world");
+
+// set the character size
+	text.setCharacterSize(24); // in pixels, not points!
+
+// set the color
+	text.setColor(sf::Color::Red);
+	// Start the game loop

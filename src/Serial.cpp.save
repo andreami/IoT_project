@@ -1,0 +1,35 @@
+#include "Serial.h"
+#include <serial/serial.h>
+
+Serial::Serial()
+{
+    serial.setPort("/dev/ttyACM0");
+    serial.setBaudrate(9600);
+    t.simpleTimeout(2000);
+    serial.setTimeout(t);
+}
+
+Serial::~Serial()
+{
+    //dtor
+}
+
+bool Serial::serialIsOpen()
+{
+    return serial.isOpen();
+}
+
+void Serial::checkConnection()
+{
+    if(!serial.isOpen()){
+        try {
+            serial.open();
+        }
+        catch(IOException) {
+            serial.close();
+        }
+        catch(SerialException){
+            serial.close();
+        }
+	}
+}

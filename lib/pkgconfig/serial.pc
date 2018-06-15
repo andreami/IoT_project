@@ -1,0 +1,8 @@
+prefix=/home/andrea/Scaricati/serial_lib/serial/build/devel
+
+Name: serial
+Description: Description of serial
+Version: 1.2.1
+Cflags: -I/home/andrea/Scaricati/serial_lib/serial/include
+Libs: -L/home/andrea/Scaricati/serial_lib/serial/build/devel/lib -lserial -lrt -lpthread
+Requires: 
