@@ -1,0 +1,14 @@
+Button.o: Button.cpp Button.h EventsManager.h serial.h serial/v8stdint.h \
+ HTTP.h TextsPack.h
+ButtonsPack.o: ButtonsPack.cpp ButtonsPack.h Button.h EventsManager.h \
+ serial.h serial/v8stdint.h HTTP.h TextsPack.h
+EventsManager.o: EventsManager.cpp EventsManager.h serial.h \
+ serial/v8stdint.h HTTP.h TextsPack.h
+HTTP.o: HTTP.cpp HTTP.h
+Icon.o: Icon.cpp Icon.h EventsManager.h serial.h serial/v8stdint.h HTTP.h \
+ TextsPack.h
+IconsPack.o: IconsPack.cpp IconsPack.h Icon.h EventsManager.h serial.h \
+ serial/v8stdint.h HTTP.h TextsPack.h
+TextsPack.o: TextsPack.cpp TextsPack.h
+main.o: main.cpp EventsManager.h serial.h serial/v8stdint.h HTTP.h \
+ TextsPack.h ButtonsPack.h Button.h IconsPack.h Icon.h

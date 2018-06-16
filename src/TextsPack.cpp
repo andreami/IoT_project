@@ -8,13 +8,14 @@ TextsPack::TextsPack()
 		printf("Impossibile trovare il font.");
 	}
     // select the font
-	connectionError.setFont(font);
 	actualTemp.setFont(font);
 	actualTemp.setCharacterSize(150);
 	degrees.setFont(font);
 	degrees.setCharacterSize(150);
     // set the string to display
-	connectionError.setString("Impossibile connettersi \n al dispositivo.");
+    connectionError.setFont(font);
+    connectionError.setCharacterSize(50);
+	connectionError.setString("Impossibile \nconnettersi \nal dispositivo.");
 
 }
 
@@ -35,19 +36,13 @@ sf::Text TextsPack::getActualTempText(std::string temp)
     return actualTemp;
 }
 
-
-sf::Text TextsPack::getErrorTitleText()
-{
-    return errorTitle;
-}
-
 sf::Text TextsPack::getConnectionErrorText()
 {
-    connectionError.setPosition(sf::Vector2f(W_WIDTH/2.5 - connectionError.getCharacterSize()*4, W_HEIGHT/2.5));
+    connectionError.setPosition(sf::Vector2f(W_WIDTH/2.5 - connectionError.getCharacterSize()*1.5, W_HEIGHT/3));
     return connectionError;
 }
 
-sf::Text TextsPack::getDegreesText()
+sf::Text TextsPack::getDegreesSymbolText()
 {
     degrees.setString(L"°C");
     degrees.setPosition(sf::Vector2f(actualTemp.getPosition().x + degrees.getCharacterSize(), degrees.getCharacterSize()/2));

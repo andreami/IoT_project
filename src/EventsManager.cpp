@@ -5,12 +5,13 @@ using namespace serial;
 
 
 EventsManager::EventsManager() {
-	serial.setPort("/dev/ttyACM1");
+	serial.setPort("/dev/ttyACM0");
 	serial.setBaudrate(9600);
 	t.simpleTimeout(2000);
 	serial.setTimeout(t);
 	openConnection();
 	temperature = "--";
+	showLightButton = false;
 }
 
 EventsManager::~EventsManager() {
@@ -21,10 +22,8 @@ void EventsManager::changeLightStatus(int idx) {
 	if (serialIsOpen()) {
 		if(!lightStatus[idx]) {
 			turnOnLight(idx);
-			lightStatus[idx] = 1;
 		} else {
 			turnOffLight(idx);
-			lightStatus[idx] = 0;
 		}
 	} else
 		printf("Connection error!\n");
@@ -106,7 +105,7 @@ void EventsManager::turnOffLight(int idx) {
 
 std::string EventsManager::readTemperatureFromSerial() {
 	try {
-		if(clock.getElapsedTime() > sf::seconds(0.2f)) {
+		if(clock.getElapsedTime() > sf::seconds(2.0f)) {
 			serial.write("T");
 			temperature = serial.readline(2);
 			serial.read(3);
@@ -118,6 +117,19 @@ std::string EventsManager::readTemperatureFromSerial() {
 	} catch(SerialException) {
 		serial.close();
 	}
+}
+
+bool EventsManager::getShowLightButtons()
+{
+    return showLightButton;
+}
+
+void EventsManager::changeShowLightButtons()
+{
+    if(!showLightButton)
+        showLightButton = true;
+    else
+        showLightButton = false;
 }
 
 

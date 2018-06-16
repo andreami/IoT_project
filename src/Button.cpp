@@ -40,6 +40,10 @@ void Button::setTexures(std::string textureName1, std::string textureName2) {
 	rect.setTexture(&texture[0]);
 }
 
+void Button::setSize(sf::Vector2f s){
+    rect.setSize(s);
+}
+
 void Button::setPosition(sf::Vector2f pos) {
 	rect.setPosition(pos);
 }
