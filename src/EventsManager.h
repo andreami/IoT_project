@@ -2,7 +2,7 @@
 #define EVENTSHANDLER_H
 
 #define MAX_LIGHT_NUMBER 5
-#include "serial.h"
+#include <serial.h>
 #include <SFML/Graphics.hpp>
 #include "HTTP.h"
 #include "TextsPack.h"

@@ -1,11 +1,19 @@
 #include "EventsManager.h"
 #include <string>
 
+//#define DEBUG_MODE
+
+#ifdef DEBUG_MODE
+#define DEB(a) {a; }
+#else
+#define DEB(a)
+#endif
+
 using namespace serial;
 
 
 EventsManager::EventsManager() {
-	serial.setPort("/dev/ttyACM0");
+	serial.setPort("/dev/ttyUSB0");  // /dev/ttyUSB0  /dev/ttyACM0
 	serial.setBaudrate(9600);
 	t.simpleTimeout(2000);
 	serial.setTimeout(t);
@@ -22,11 +30,13 @@ void EventsManager::changeLightStatus(int idx) {
 	if (serialIsOpen()) {
 		if(!lightStatus[idx]) {
 			turnOnLight(idx);
+			DEB(printf("La lampadina %i è accesa\n", idx+1));
 		} else {
 			turnOffLight(idx);
+			DEB(printf("La lampadina %i è spenta\n", idx+1));
 		}
 	} else
-		printf("Connection error!\n");
+		DEB(printf("Dispositivo non connesso\n"));
 }
 
 
@@ -37,7 +47,9 @@ bool EventsManager::serialIsOpen() {
 void EventsManager::openConnection() {
 	try {
 		serial.open();
+		DEB(printf("Dispositivo connesso\n"));
 	} catch(IOException) {
+
 		serial.close();
 	} catch(SerialException) {
 		serial.close();
@@ -65,8 +77,11 @@ void EventsManager::turnOnLight(int idx) {
 		case 2:
 			serial.write("E");
 			break;
-        case 4:
+        case 3:
 			serial.write("G");
+			break;
+        case 4:
+			serial.write("I");
 			break;
 		}
 		lightStatus[idx] = 1;
@@ -90,8 +105,11 @@ void EventsManager::turnOffLight(int idx) {
 		case 2:
 			serial.write("F");
 			break;
-        case 4:
+        case 3:
 			serial.write("H");
+			break;
+        case 4:
+			serial.write("L");
 			break;
 		}
 		lightStatus[idx] = 0;
@@ -114,8 +132,10 @@ std::string EventsManager::readTemperatureFromSerial() {
 		return temperature;
 	} catch(PortNotOpenedException) {
 		serial.close();
+        DEB(printf("Dispositivo non connesso\n"));
 	} catch(SerialException) {
 		serial.close();
+		DEB(printf("Dispositivo non connesso\n"));
 	}
 }
 
@@ -172,4 +192,5 @@ bool EventsManager::checkConnection() {
 	return connectionStatus;
 }
 */
+
 

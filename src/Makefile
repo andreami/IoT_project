@@ -1,6 +1,6 @@
-OBJ = main.o EventsManager.o Button.o ButtonsPack.o Icon.o IconsPack.o TextsPack.o HTTP.o
+OBJ = main.cpp EventsManager.cpp ButtonsPack.cpp Button.cpp IconsPack.cpp Icon.cpp TextsPack.cpp HTTP.cpp 
 SFML =  -L/usr/lib/x86_64-linux-gnu/lib -lsfml-network -lsfml-graphics -lsfml-window -lsfml-system
-SERIAL = -L/tmp/usr/local/lib/ -lserial
+SERIAL = -L/tmp/usr/local/lib/ -lserial -I/tmp/usr/local/include/serial
 CXXFLAGS=-Wall  
 
 IOT: $(OBJ)
@@ -10,6 +10,8 @@ IOT: $(OBJ)
 
 .PHONY: depend clean cleanall
 
+debug:
+	g++ -o IOT $(OBJ) $(SFML) $(SERIAL) -D DEBUG_MODE
 depend:
 	g++ -MM *.cpp > dependencies
 clean:

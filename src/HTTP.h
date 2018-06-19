@@ -2,7 +2,7 @@
 #define HTTP_H
 #include <SFML/Network.hpp>
 
-/**< \brief Fornisce dei metodi per connettersi wireless con il microcontrollore.*/
+/** \brief Fornisce dei metodi per connettersi wireless con il microcontrollore.*/
 
 class HTTP {
 public:
